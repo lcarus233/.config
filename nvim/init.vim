@@ -34,18 +34,12 @@ filetype plugin indent on
 " file
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-" airline
-set laststatus=2
-let g:airline#extensions#tabline#enabled=1
-let g:airline_theme='gruvbox'
-nmap <tab> :bn<cr>
-
 " open markdown
 map r :call CompileRunGcc()<CR>
 func! CompileRunGcc()
 	exec "w"
 	if &filetype == 'markdown'
-		exec "MarkdownPreview"
+		exec "InstantMarkdownPreview"
 	endif
 endfunc
 
@@ -66,38 +60,12 @@ autocmd Filetype markdown inoremap ,3 ###<Space><Enter><++><Esc>kA
 autocmd Filetype markdown inoremap ,4 ####<Space><Enter><++><Esc>kA
 autocmd Filetype markdown inoremap ,l --------<Enter>
 
-" markdown
-let g:mkdp_auto_start = 0
-let g:mkdp_auto_close = 1
-let g:mkdp_refresh_slow = 0
-let g:mkdp_command_for_global = 0
-let g:mkdp_open_to_the_world = 0
-let g:mkdp_open_ip = ''
-let g:mkdp_browser = 'firefox'
-let g:mkdp_echo_preview_url = 0
-let g:mkdp_browserfunc = ''
-let g:mkdp_preview_options = {
-    \ 'mkit': {},
-    \ 'katex': {},
-    \ 'uml': {},
-    \ 'maid': {},
-    \ 'disable_sync_scroll': 0,
-    \ 'sync_scroll_type': 'middle',
-    \ 'hide_yaml_meta': 1,
-    \ 'sequence_diagrams': {},
-    \ 'flowchart_diagrams': {},
-    \ 'content_editable': v:false
-    \ }
-let g:mkdp_markdown_css = ''
-let g:mkdp_highlight_css = ''
-let g:mkdp_port = ''
-let g:mkdp_page_title = '「${name}」'
-
 " plug
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'vim-airline/vim-airline'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+"Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'vim-airline/vim-airline-themes'
 Plug 'morhetz/gruvbox'
 
@@ -105,3 +73,14 @@ call plug#end()
 
 " color
 colorscheme gruvbox
+
+" airline
+set laststatus=2
+let g:airline#extensions#tabline#enabled=1
+let g:airline_theme='gruvbox'
+nmap <tab> :bn<cr>
+
+" markdown plug
+let g:instant_markdown_slow = 0
+let g:instant_markdown_autostart = 0
+let g:instant_markdown_browser = "firefox --new-window"
