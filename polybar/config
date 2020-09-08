@@ -110,9 +110,9 @@ font-3 = Font Awesome 5 Free Solid:size=10;1
 font-4 = Font Awesome 5 Free Regular:size=10;1
 
 modules-left = wifi
-modules-center = 
+modules-center = mpd
 modules-right = 
-tray-position = center
+tray-position = right
 tray-padding = 2
 ;tray-background = #0063ff
 
@@ -707,6 +707,37 @@ bar-empty = ┉
 bar-empty-foreground = ${colors.background}
 bar-empty-font = 2
 
+[module/mpd]
+type = internal/mpd
+format-online =  <icon-prev> <icon-stop> <toggle> <icon-next> <icon-repeat> <icon-random> <icon-repeatone> <label-time> <label-song>
+
+; Available tokens:
+;   %artist%
+;   %album-artist%
+;   %album%
+;   %date%
+;   %title%
+; Default: %artist% - %title%
+label-song = %artist% - %title%
+
+; Available tokens:
+;   None
+label-offline = mpd is offline
+
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+icon-repeat = 
+icon-repeatone = 
+icon-random = 
+
+toggle-on-foreground = ${colors.foreground}
+toggle-off-foreground = ${colors.foreground}
+
+;label-song-maxlen = 25
+;label-song-ellipsis = true
 
 [settings]
 screenchange-reload = true
