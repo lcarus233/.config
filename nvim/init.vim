@@ -6,6 +6,7 @@ set wrap
 set showcmd
 set wildmenu
 set ruler
+"set clipboard+=unnamedplus
 
 " tab
 set tabstop=4
